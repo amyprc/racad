@@ -1,4 +1,4 @@
-public class Gene {
+public class Gene implements Comparable {
   private Gene() { }
 
   /**Parse a gene.
@@ -20,6 +20,18 @@ public class Gene {
     }
 
     return result;
+  }
+
+  @Override
+  public int compareTo(Object obj) {
+    Gene o = (Gene) obj;
+
+    int result = index.compareTo(o.index);
+    if (result != 0) return result;
+    if (arm != o.arm) return arm - o.arm;
+    if (left < o.left) return -1;
+    if (left > o.left) return 1;
+    return 0;
   }
 
   private static String _init(String line) {

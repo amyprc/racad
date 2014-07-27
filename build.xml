@@ -4,6 +4,7 @@
   <property name="data" location="data"/>
   <property name="build" location="build"/>
   <property name="main" value="Main"/>
+  <property name="output" value="${data}/output.txt"/>
 
   <target name="init">
     <!-- Create the time stamp -->
@@ -22,7 +23,7 @@
         description="run the program " >
     <java classname="${main}">
       <classpath location="${build}"/>
-      <arg value="${data}"/>
+      <arg line="${data} ${output}"/>
     </java>
   </target>
 
@@ -30,6 +31,7 @@
   <target name="clean"
         description="clean up" >
     <!-- Delete the ${build} and ${dist} directory trees -->
+    <delete file="${output}"/>
     <delete dir="${build}"/>
   </target>
 </project>
