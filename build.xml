@@ -1,0 +1,35 @@
+<project name="RACAD" default="run" basedir=".">
+  <!-- set global properties for this build -->
+  <property name="src" location="src"/>
+  <property name="data" location="data"/>
+  <property name="build" location="build"/>
+  <property name="main" value="Main"/>
+
+  <target name="init">
+    <!-- Create the time stamp -->
+    <tstamp/>
+    <!-- Create the build directory structure used by compile -->
+    <mkdir dir="${build}"/>
+  </target>
+
+  <target name="compile" depends="init"
+        description="compile the source " >
+    <!-- Compile the java code from ${src} into ${build} -->
+    <javac srcdir="${src}" destdir="${build}"/>
+  </target>
+
+  <target name="run" depends="compile"
+        description="run the program " >
+    <java classname="${main}">
+      <classpath location="${build}"/>
+      <arg value="${data}"/>
+    </java>
+  </target>
+
+  
+  <target name="clean"
+        description="clean up" >
+    <!-- Delete the ${build} and ${dist} directory trees -->
+    <delete dir="${build}"/>
+  </target>
+</project>
